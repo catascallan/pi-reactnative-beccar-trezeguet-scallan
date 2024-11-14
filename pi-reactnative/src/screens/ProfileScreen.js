@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, FlatList } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image } from "react-native";
 import { auth, db } from "../firebase/config";
 
 class Profile extends Component {
@@ -51,6 +51,10 @@ class Profile extends Component {
 
         return (
             <View style={styles.container}>
+                <Image 
+                    source={require("../../assets/profile.png")} 
+                    style={styles.logo} 
+                />
                 <Text style={styles.titulo}>Mi Perfil</Text>
                 <Text style={styles.info}>Nombre de usuario: {user.nombre}</Text>
                 <Text style={styles.info}>Email: {user.email}</Text>
@@ -94,6 +98,12 @@ const styles = StyleSheet.create({
         color: "#d4a7c0",
         marginBottom: 20
     },
+    logo: {
+        width: 200,
+        height:200,
+        marginBottom: 10,
+        marginTop: 10,
+    },
     info: {
         fontSize: 16,
         color: "#d4a7c0",
@@ -122,6 +132,7 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         borderRadius: 5,
         marginTop: 20,
+        marginBottom:20,
         width: "100%",
         alignItems: "center"
     },

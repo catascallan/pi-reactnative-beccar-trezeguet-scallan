@@ -50,8 +50,8 @@ class Register extends Component {
         return (
             <View style={styles.container}>
                 <Image 
-                    //source={require("../assets/logo.png")} (crear logo desp)
-                    //style={styles.logo} 
+                    source={require("../../assets/logo.png")} 
+                    style={styles.logo} 
                 />
                 <Text style={styles.titulo}>Crea una cuenta</Text>
 
@@ -104,9 +104,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 40
     },
     logo: {
-        width: 120,
-        height: 120,
-        marginBottom: 20
+        width: 300,
+        height: 300,
+        marginBottom: 10
     },
     titulo: {
         fontWeight: "bold",
