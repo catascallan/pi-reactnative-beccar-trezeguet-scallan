@@ -89,62 +89,74 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#fef5f7",
+        backgroundColor: "#FFF5F7",  
         paddingHorizontal: 40
+    },
+    logo: {
+        width: 250,  
+        height: 250,  
+        marginTop: 10,
     },
     titulo: {
         fontWeight: "bold",
-        fontSize: 24,
-        color: "#d4a7c0",
-        marginBottom: 20
-    },
-    logo: {
-        width: 200,
-        height:200,
-        marginBottom: 10,
-        marginTop: 10,
+        fontSize: 20,
+        color: "#D4C6E7",  
+        marginBottom: 30,
+        fontFamily: "Arial"
     },
     info: {
         fontSize: 16,
-        color: "#d4a7c0",
-        marginBottom: 10
+        color: "#D4C6E7",  
+        marginBottom: 10,
+        fontFamily: "Arial"
     },
     postContainer: {
-        backgroundColor: "#fff",
+        backgroundColor: "#FFFFFF", 
         padding: 15,
         marginVertical: 10,
         width: "100%",
-        borderRadius: 5,
+        borderRadius: 12,  
         borderWidth: 1,
-        borderColor: "#f2d0d9"
+        borderColor: "#F6D7B0"  
     },
     botonDelete: {
-        backgroundColor: "#e1a9b7",
-        paddingHorizontal: 10,
-        paddingVertical: 6,
-        borderRadius: 5,
-        alignItems: "center",
-        marginTop: 10
-    },
-    botonLogout: {
-        backgroundColor: "#e1a9b7",
+        backgroundColor: "#C9E4DE",  
         paddingHorizontal: 10,
         paddingVertical: 12,
-        borderRadius: 5,
-        marginTop: 20,
-        marginBottom:20,
+        borderRadius: 20,
+        marginTop: 15,
         width: "100%",
-        alignItems: "center"
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: { width: 2, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 3
+    },
+    botonLogout: {
+        backgroundColor: "#C9E4DE",  
+        paddingHorizontal: 10,
+        paddingVertical: 12,
+        borderRadius: 20,
+        marginTop: 20,
+        marginBottom: 20,
+        width: "100%",
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: { width: 2, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 3
     },
     botonTexto: {
-        color: "#fff",
+        color: "#FFFFFF",
         fontWeight: "bold",
-        fontSize: 16
+        fontSize: 16,
+        fontFamily: "Arial"
     },
     botonTextoLogout: {
-        color: "#fff",
+        color: "#FFFFFF",
         fontWeight: "bold",
-        fontSize: 16
+        fontSize: 16,
+        fontFamily: "Arial"
     }
 });
 

@@ -53,7 +53,7 @@ class Register extends Component {
                     source={require("../../assets/logo.png")} 
                     style={styles.logo} 
                 />
-                <Text style={styles.titulo}>Crea una cuenta</Text>
+                <Text style={styles.titulo}>CREA TU CUENTA</Text>
 
                 <TextInput
                     style={styles.field}
@@ -100,71 +100,80 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#fef5f7", 
+        backgroundColor: "#FFF5F7", 
         paddingHorizontal: 40
     },
     logo: {
-        width: 300,
-        height: 300,
-        marginBottom: 10
+        width: 280,
+        height: 280,
+        marginBottom: 20
     },
     titulo: {
         fontWeight: "bold",
-        fontSize: 24,
-        color: "#d4a7c0", 
-        marginBottom: 20
+        fontSize: 20,
+        color: "#D4C6E7", 
+        marginBottom: 30,
+        fontFamily: "Arial"
     },
     field: {
         borderWidth: 1,
-        borderColor: "#f2d0d9", 
-        borderRadius: 5,
+        borderColor: "#F6D7B0", 
+        borderRadius: 12,
         height: 50,
         width: "100%",
         paddingHorizontal: 15,
         fontSize: 16,
-        marginBottom: 10,
-        backgroundColor: "#fff"
+        marginBottom: 15,
+        backgroundColor: "#FFFFFF",
+        color: "#000"
     },
     boton: {
-        backgroundColor: "#e1a9b7", 
+        backgroundColor: "#C9E4DE", 
         paddingHorizontal: 10,
         paddingVertical: 12,
-        borderRadius: 5,
-        marginTop: 10,
+        borderRadius: 20,
+        marginTop: 15,
         width: "100%",
-        alignItems: "center"
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: { width: 2, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 3
     },
     botonDisabled: {
-        backgroundColor: "#f5d4db" 
+        backgroundColor: "#ECECEC" 
     },
     botonTexto: {
-        color: "#fff",
+        color: "#FFFFFF",
         fontWeight: "bold",
-        fontSize: 16
+        fontSize: 16,
+        fontFamily: "Arial"
     },
     botonLogin: {
         backgroundColor: "transparent",
         paddingHorizontal: 10,
         paddingVertical: 10,
-        borderRadius: 5,
+        borderRadius: 20,
         borderWidth: 1,
-        borderColor: "#e1a9b7", 
-        marginTop: 15,
+        borderColor: "#BFDCE5", 
+        marginTop: 20,
         width: "100%",
         alignItems: "center"
     },
     botonTextoLogin: {
-        color: "#e1a9b7", 
+        color: "#BFDCE5", 
         fontWeight: "bold",
-        fontSize: 16
+        fontSize: 16,
+        fontFamily: "Arial"
     },
     textoLogin: {
         fontSize: 14,
-        color: "#d4a7c0", 
-        marginTop: 20
+        color: "#D4C6E7", 
+        marginTop: 20,
+        fontFamily: "Arial"
     },
     errorText: {
-        color: "red",
+        color: "#F8C9C0", 
         marginTop: 10,
         textAlign: "center"
     }
