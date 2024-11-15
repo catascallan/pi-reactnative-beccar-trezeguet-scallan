@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image } from "react-native";
 import { auth, db } from "../firebase/config";
 
-class Profile extends Component {
+class ProfileScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -14,7 +14,7 @@ class Profile extends Component {
 
     componentDidMount() {
         const currentUser = auth.currentUser;
-        
+
         if (currentUser) {
             db.collection("users")
                 .where("email", "==", currentUser.email)
@@ -25,13 +25,16 @@ class Profile extends Component {
                 });
 
             db.collection("posts")
-                .where("userId", "==", currentUser.uid)
+                .where("owner", "==", currentUser.email)  
                 .onSnapshot(snapshot => {
                     const posts = snapshot.docs.map(doc => ({
                         id: doc.id,
-                        description: doc.data().description
+                        description: doc.data().descripcion
                     }));
+                    console.log(posts); 
                     this.setState({ posts, totalPosts: posts.length });
+                }, (error) => {
+                    console.error(error);
                 });
         }
     }
@@ -77,7 +80,7 @@ class Profile extends Component {
                 />
 
                 <TouchableOpacity onPress={this.handleLogout} style={styles.botonLogout}>
-                    <Text style={styles.botonTextoLogout}>Cerrar sesión</Text>
+                    <Text style={styles.botonTextoLogout}>Logout</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -121,8 +124,8 @@ const styles = StyleSheet.create({
     },
     botonDelete: {
         backgroundColor: "#C9E4DE",  
-        paddingHorizontal: 10,
-        paddingVertical: 12,
+        paddingHorizontal: 8,  
+        paddingVertical: 10,   
         borderRadius: 20,
         marginTop: 15,
         width: "100%",
@@ -131,6 +134,12 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 2, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 3
+    },
+    botonTexto: {
+        color: "#FFFFFF",
+        fontWeight: "bold",
+        fontSize: 14,  
+        fontFamily: "Arial"
     },
     botonLogout: {
         backgroundColor: "#C9E4DE",  
@@ -146,12 +155,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 3
     },
-    botonTexto: {
-        color: "#FFFFFF",
-        fontWeight: "bold",
-        fontSize: 16,
-        fontFamily: "Arial"
-    },
     botonTextoLogout: {
         color: "#FFFFFF",
         fontWeight: "bold",
@@ -160,4 +163,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Profile;
+export default ProfileScreen;
