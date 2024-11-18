@@ -18,15 +18,11 @@ class Post extends Component {
     if (this.state.liked) {
       postRef.update({
         likes: this.state.likes - 1
-      }).then(() => {
-        this.setState({ likes: this.state.likes - 1, liked: false });
-      });
+      }).then(() => { this.setState({ likes: this.state.likes - 1, liked: false });});
     } else {
       postRef.update({
         likes: this.state.likes + 1
-      }).then(() => {
-        this.setState({ likes: this.state.likes + 1, liked: true });
-      });
+      }).then(() => { this.setState({ likes: this.state.likes + 1, liked: true });});
     }
   };
 
@@ -45,16 +41,7 @@ class Post extends Component {
           Posteado por: {postInfo.data.owner}
         </Text>
 
-        {postInfo.data.foto && (
-          <Image
-            source={{ uri: postInfo.data.foto }}
-            style={styles.image}
-          />
-        )}
-
-        <Text style={styles.field}>
-          Descripción: {postInfo.data.descripcion}
-        </Text>
+        <Text style={styles.field}>{postInfo.data.descripcion}</Text>
 
         <Text style={styles.field}>
           Fecha de creación:{" "}
@@ -118,7 +105,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 20,
     backgroundColor: "#FFFFFF",
-    color: "#333",
+    color: "#808080",
     fontFamily: "Arial",
     textAlign: "center",
     textAlignVertical: "center",
