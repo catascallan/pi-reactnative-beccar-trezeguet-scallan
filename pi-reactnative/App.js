@@ -13,7 +13,7 @@ export default function App() {
         <Stack.Screen 
           name="Register" 
           component={RegisterScreen} 
-          options={{ headerShown: false }}  
+          options={{ headerShown: false }} //header oculto
         />
         <Stack.Screen 
           name="Login" 
@@ -22,7 +22,7 @@ export default function App() {
         />
         <Stack.Screen 
           name="HomeMenu" 
-          component={HomeMenu}  
+          component={HomeMenu} //tab navigation
           options={{ headerShown: false }}  
         />
       </Stack.Navigator>

@@ -16,10 +16,10 @@ class ProfileScreen extends Component {
         const currentUser = auth.currentUser;
 
         if (currentUser) {
-            db.collection("users")
+            db.collection("users") 
                 .where("email", "==", currentUser.email)
                 .onSnapshot(snapshot => {
-                    snapshot.forEach(doc => {
+                    snapshot.forEach(doc => { 
                         this.setState({ user: doc.data() });
                     });
                 });
@@ -40,11 +40,11 @@ class ProfileScreen extends Component {
     }
 
     handleDeletePost = (postId) => {
-        db.collection("posts").doc(postId).delete();
+        db.collection("posts").doc(postId).delete(); //función de borrado del post
     };
 
     handleLogout = () => {
-        auth.signOut()
+        auth.signOut() //función de deslogueo
             .then(() => this.props.navigation.navigate("Login"))
             .catch(error => console.log(error));
     };
@@ -79,10 +79,10 @@ class ProfileScreen extends Component {
                     )}
                 />
 
-                <TouchableOpacity onPress={this.handleLogout} style={styles.botonLogout}>
+                <TouchableOpacity onPress={this.handleLogout} style={styles.botonLogout}> 
                     <Text style={styles.botonTextoLogout}>Logout</Text>
-                </TouchableOpacity>
-            </View>
+                </TouchableOpacity> 
+            </View> //botón de deslogueo
         );
     }
 }
@@ -120,7 +120,8 @@ const styles = StyleSheet.create({
         width: "100%",
         borderRadius: 12,  
         borderWidth: 1,
-        borderColor: "#F6D7B0"  
+        borderColor: "#F6D7B0", 
+        alignItems: "center",
     },
     botonDelete: {
         backgroundColor: "#C9E4DE",  

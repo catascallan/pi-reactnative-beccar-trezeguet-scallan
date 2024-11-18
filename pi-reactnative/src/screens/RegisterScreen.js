@@ -18,14 +18,14 @@ class Register extends Component {
     componentDidMount() {
         auth.onAuthStateChanged(user => {
             if (user) {
-                this.props.navigation.navigate("HomeMenu");
+                this.props.navigation.navigate("HomeMenu"); //navegación entre pantallas con la función navigate()
             }
         });
     }
 
     validateForm() {
         const { email, password, userName } = this.state;
-        const registroValido = email !== "" && password !== "" && userName !== "";
+        const registroValido = email !== "" && password !== "" && userName !== ""; //los campos no pueden quedar vacíos
         this.setState({ botonHabilitado: !registroValido });
     }
 
@@ -47,7 +47,7 @@ class Register extends Component {
     }
 
     render() {
-        return (
+        return ( //"formulario" de registro
             <View style={styles.container}>
                 <Image 
                     source={require("../../assets/logo.png")} 

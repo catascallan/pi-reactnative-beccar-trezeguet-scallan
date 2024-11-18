@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { db } from "../firebase/config";  
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { db, auth } from "../firebase/config";  
 
 class Post extends Component {
   constructor(props) {
@@ -35,6 +35,8 @@ class Post extends Component {
     const { postInfo } = this.props;
     const { likes, liked } = this.state;
 
+    const isOwner = auth.currentUser && auth.currentUser.email === postInfo.data.owner;
+
     return (
       <View style={styles.container}>
         <Text style={styles.titulo}>
@@ -43,7 +45,7 @@ class Post extends Component {
 
         <Text style={styles.field}>{postInfo.data.descripcion}</Text>
 
-        <Text style={styles.field}>
+        <Text style={styles.fecha}>
           Fecha de creación:{" "}
           {new Date(postInfo.data.createdAt).toLocaleString()}
         </Text>
@@ -59,95 +61,99 @@ class Post extends Component {
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.botonLogin} onPress={this.handleDelete}>
-          <Text style={styles.botonTextoLogin}>Eliminar</Text>
-        </TouchableOpacity>
+        {isOwner && ( //solo se puede eliminar si es el dueño del post
+          <TouchableOpacity style={styles.botonLogin} onPress={this.handleDelete}>
+            <Text style={styles.botonTextoLogin}>Eliminar</Text>
+          </TouchableOpacity>
+        )}
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#FFFCFE",
-    paddingHorizontal: 40,
-    paddingVertical: 20,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: "#D4C6E7",
-    marginBottom: 20,
-  },
-  titulo: {
-    fontWeight: "bold",
-    fontSize: 20,
-    color: "#D4C6E7",
-    marginBottom: 10,
-    fontFamily: "Arial",
-    textAlign: "center",
-  },
-  image: {
-    width: 100,  
-    height: 100,
-    borderRadius: 10,
-    marginBottom: 15,
-  },
-  field: {
-    borderWidth: 1,
-    borderColor: "#D4C6E7",
-    borderRadius: 12,
-    height: 60,
-    width: "100%",
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    fontSize: 16,
-    marginBottom: 20,
-    backgroundColor: "#FFFFFF",
-    color: "#808080",
-    fontFamily: "Arial",
-    textAlign: "center",
-    textAlignVertical: "center",
-  },
-  likes: {
-    fontSize: 16,
-    color: "#D4C6E7",
-    marginBottom: 10,
-    fontFamily: "Arial",
-  },
-  boton: {
-    backgroundColor: "#C9E4DE",
-    paddingHorizontal: 10,
-    paddingVertical: 12,
-    borderRadius: 20,
-    marginTop: 15,
-    width: "100%",
-    alignItems: "center",
-  },
-  botonTexto: {
-    color: "#FFFFFF",
-    fontWeight: "bold",
-    fontSize: 16,
-    fontFamily: "Arial",
-  },
-  botonLogin: {
-    backgroundColor: "transparent",
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: "#BFDCE5",
-    marginTop: 10,
-    width: "100%",
-    alignItems: "center",
-  },
-  botonTextoLogin: {
-    color: "#BFDCE5",
-    fontWeight: "bold",
-    fontSize: 16,
-    fontFamily: "Arial",
-  },
-});
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#FFFCFE",
+      paddingHorizontal: 40,
+      paddingVertical: 20,
+      borderRadius: 10,
+      borderWidth: 2,
+      borderColor: "#D4C6E7",
+      marginBottom: 20,
+    },
+    titulo: {
+      fontWeight: "bold",
+      fontSize: 20,
+      color: "#D4C6E7",
+      marginBottom: 10,
+      fontFamily: "Arial",
+      textAlign: "center",
+    },
+    field: {
+      borderWidth: 1,
+      borderColor: "#D4C6E7",
+      borderRadius: 12,
+      height: 80, 
+      width: "100%",
+      paddingHorizontal: 20,
+      paddingVertical: 10,
+      fontSize: 20, 
+      marginBottom: 15,
+      backgroundColor: "#FFFFFF",
+      color: "#808080",
+      fontFamily: "Arial",
+      textAlign: "center",
+      textAlignVertical: "center",
+    },
+    fecha: {
+      fontSize: 12, 
+      color: "#D4C6E7",
+      marginTop: 15, 
+      marginBottom: 15,
+      fontFamily: "Arial",
+    },
+    likes: {
+      fontSize: 16,
+      color: "#D4C6E7",
+      marginBottom: 10,
+      fontFamily: "Arial",
+    },
+    boton: {
+      backgroundColor: "#C9E4DE",
+      paddingHorizontal: 10,
+      paddingVertical: 12,
+      borderRadius: 20,
+      marginTop: 15,
+      width: "100%",
+      alignItems: "center",
+    },
+    botonTexto: {
+      color: "#FFFFFF",
+      fontWeight: "bold",
+      fontSize: 16,
+      fontFamily: "Arial",
+    },
+    botonLogin: {
+      backgroundColor: "transparent",
+      paddingHorizontal: 10,
+      paddingVertical: 10,
+      borderRadius: 20,
+      borderWidth: 1,
+      borderColor: "#BFDCE5",
+      marginTop: 10,
+      width: "100%",
+      alignItems: "center",
+    },
+    botonTextoLogin: {
+      color: "#BFDCE5",
+      fontWeight: "bold",
+      fontSize: 16,
+      fontFamily: "Arial",
+    },
+  });
+  
 
 export default Post;

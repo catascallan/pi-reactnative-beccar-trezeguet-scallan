@@ -14,7 +14,7 @@ class HomeScreen extends Component {
 
     componentDidMount() {
         this.unsubscribe = db.collection("posts")
-            .orderBy("createdAt", "desc") 
+            .orderBy("createdAt", "desc") //ordenamos los posts de más nuevo a más viejo
             .onSnapshot((snapshot) => {
                 const posts = snapshot.docs.map((doc) => ({
                     id: doc.id,
@@ -55,15 +55,15 @@ class HomeScreen extends Component {
                     <Text style={styles.noPosts}>No hay posteos aún</Text>
                 ) : (
                     <FlatList
-                        data={posts}
-                        keyExtractor={(item) => item.id}
+                        data={posts} //array de posteos
+                        keyExtractor={(item) => item.id} //clave única de cada post
                         renderItem={({ item }) => (
-                            <Post postInfo={item} />
+                            <Post postInfo={item} /> //componente renderizado en cada iteración
                         )}
                     />
                 )}
                 <TouchableOpacity
-                    onPress={() => this.logout()}
+                    onPress={() => this.logout()} //cuando se apreta el botón de logout se ejecuta la función logout de arriba
                     style={styles.logoutButton}
                 >
                     <Text style={styles.logoutText}>Logout</Text>
@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
         marginBottom: 40,
         marginTop: 30,
         fontFamily: "Arial",
+        textAlign: "center",
     },
     loadingText: {
         fontSize: 16,
@@ -100,6 +101,7 @@ const styles = StyleSheet.create({
         color: "#D4C6E7",
         marginBottom: 20,
         fontFamily: "Arial",
+        textAlign: "center",
     },
     logoutButton: {
         backgroundColor: "#C9E4DE",

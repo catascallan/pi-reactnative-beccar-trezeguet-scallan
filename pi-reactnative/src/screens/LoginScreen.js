@@ -13,7 +13,7 @@ class LoginScreen extends Component {
     }
 
     componentDidMount() {
-        auth.onAuthStateChanged(user => {
+        auth.onAuthStateChanged(user => { //remember me
             if (user) {
                 this.props.navigation.navigate("HomeMenu");
             }
@@ -30,14 +30,14 @@ class LoginScreen extends Component {
         } else {
             auth.signInWithEmailAndPassword(email, password)
                 .then(response => {
-                    this.props.navigation.navigate("HomeMenu");
+                    this.props.navigation.navigate("HomeMenu"); //si el login es exitoso, se redirige a home
                 })
-                .catch(error => this.setState({ error: "Falló el login." }));
+                .catch(error => this.setState({ error: "Falló el login." })); 
         }
     }
 
     render() {
-        return (
+        return ( //"formulario" creado por nosotras
             <View style={styles.container}>
                 <Image 
                     source={require("../../assets/logo.png")} 
@@ -48,8 +48,8 @@ class LoginScreen extends Component {
                     style={styles.field}
                     keyboardType="email-address"
                     placeholder="Email"
-                    onChangeText={text => this.setState({ email: text })}
-                    value={this.state.email}
+                    onChangeText={text => this.setState({ email: text })} //recibe la info y la guarda en el estado
+                    value={this.state.email} //muestra la información del estado
                 />
                 <TextInput
                     style={styles.field}
@@ -66,11 +66,11 @@ class LoginScreen extends Component {
                     <Text style={styles.botonTexto}>Login</Text>
                 </TouchableOpacity>
 
-                <Text style={styles.textoLogin}>¿Todavía no te registraste?</Text>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate("Register")} style={styles.botonLogin}>
-                    <Text style={styles.botonTextoLogin}>No tengo cuenta</Text>
-                </TouchableOpacity>
-            </View>
+                <Text style={styles.textoLogin}>¿Todavía no te registraste?</Text> 
+                <TouchableOpacity onPress={() => this.props.navigation.navigate("Register")} style={styles.botonLogin}> 
+                    <Text style={styles.botonTextoLogin}>No tengo cuenta</Text> 
+                </TouchableOpacity> 
+            </View> //navegación a register si todavía no está registrado
         );
     }
 }
