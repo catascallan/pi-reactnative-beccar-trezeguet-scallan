@@ -25,8 +25,10 @@ class HomeScreen extends Component {
     }
 
     componentWillUnmount() {
-        this.unsubscribe && this.unsubscribe();
-    }
+        if (this.unsubscribe) {
+            this.unsubscribe();
+        }
+    }    
 
     logout() {
         auth.signOut()
