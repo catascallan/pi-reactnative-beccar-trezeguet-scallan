@@ -68,7 +68,7 @@ class ProfileScreen extends Component {
                     keyExtractor={item => item.id}
                     renderItem={({ item }) => (
                         <View style={styles.postContainer}>
-                            <Text>{item.description}</Text>
+                            <Text style={styles.postText}>{item.description}</Text>
                             <TouchableOpacity
                                 onPress={() => this.handleDeletePost(item.id)}
                                 style={styles.botonDelete}
@@ -109,38 +109,42 @@ const styles = StyleSheet.create({
     },
     info: {
         fontSize: 16,
-        color: "#D4C6E7",  
+        color: "#B2A0C3",  
         marginBottom: 10,
         fontFamily: "Arial"
     },
     postContainer: {
-        backgroundColor: "#FFFFFF", 
-        padding: 15,
-        marginVertical: 10,
-        width: "100%",
-        borderRadius: 12,  
-        borderWidth: 1,
-        borderColor: "#F6D7B0", 
-        alignItems: "center",
+        backgroundColor: "#F4F1FC",
+        padding: 20, 
+        borderRadius: 16, 
+        marginBottom: 20,
+        marginTop: 10,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 4 }, 
+        shadowOpacity: 0.15,
+        shadowRadius: 6,
+        alignItems: "center", 
+        justifyContent: "center", 
     },
     botonDelete: {
-        backgroundColor: "#C9E4DE",  
-        paddingHorizontal: 8,  
-        paddingVertical: 10,   
-        borderRadius: 20,
-        marginTop: 15,
-        width: "100%",
+        backgroundColor: "#FFEDED",
+        paddingVertical: 10, 
+        paddingHorizontal: 20,
+        borderRadius: 8,
         alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: { width: 2, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 3
+        marginTop: 16,
     },
     botonTexto: {
-        color: "#FFFFFF",
-        fontWeight: "bold",
-        fontSize: 14,  
-        fontFamily: "Arial"
+        color: "#FF5C5C",
+        fontWeight: "600",
+        fontSize: 16, 
+    },
+    postText: {
+        fontSize: 18, 
+        color: "#696969", 
+        textAlign: "center", 
+        marginBottom: 12, 
+        lineHeight: 24,
     },
     botonLogout: {
         backgroundColor: "#C9E4DE",  

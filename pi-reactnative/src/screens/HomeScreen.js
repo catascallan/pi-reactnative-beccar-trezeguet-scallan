@@ -46,9 +46,6 @@ class HomeScreen extends Component {
 
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>
-                    {`Bienvenido ${auth.currentUser.email}`}
-                </Text>
                 {loading ? (
                     <Text style={styles.loadingText}>Cargando posts...</Text>
                 ) : posts.length === 0 ? (
@@ -80,15 +77,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: "#FFF5F7",
         paddingHorizontal: 40,
-    },
-    welcome: {
-        fontWeight: "bold",
-        fontSize: 20,
-        color: "#D4C6E7",
-        marginBottom: 40,
-        marginTop: 30,
-        fontFamily: "Arial",
-        textAlign: "center",
+        paddingTop: 30,
     },
     loadingText: {
         fontSize: 16,

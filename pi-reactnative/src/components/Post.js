@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { AntDesign } from "@expo/vector-icons"; // Importar ícono de corazón
 import { db, auth } from "../firebase/config";  
 import firebase from "firebase";
 
@@ -8,7 +9,7 @@ class Post extends Component {
         super(props);
         const likes = this.props.postInfo.data.likes || [];
         this.state = {
-          liked: likes.includes(auth.currentUser.email), //email para verificar si el usuario dio like
+          liked: likes.includes(auth.currentUser.email),
           likesCount: likes.length, 
         };
       }
@@ -56,28 +57,24 @@ class Post extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.titulo}>Posteado por: {postInfo.data.owner}</Text>
-
-        <Text style={styles.field}>{postInfo.data.descripcion}</Text>
-
-        <Text style={styles.fecha}>
-          Fecha de creación: {new Date(postInfo.data.createdAt).toLocaleString()}
+        <Text style={styles.owner}>Posteado por: {postInfo.data.owner}</Text>
+        <Text style={styles.description}>{postInfo.data.descripcion}</Text>
+        <Text style={styles.date}>
+          Fecha: {new Date(postInfo.data.createdAt).toLocaleString()}
         </Text>
-
-        <Text style={styles.likes}>Likes: {likesCount}</Text>
-
-        <TouchableOpacity 
-          style={styles.boton}
-          onPress={this.handleLike}
-        >
-          <Text style={styles.botonTexto}>
-            {liked ? "Sacar like" : "Dar like"}
-          </Text>
-        </TouchableOpacity>
-
+        <View style={styles.likeContainer}>
+          <TouchableOpacity onPress={this.handleLike}>
+            <AntDesign 
+              name={liked ? "heart" : "hearto"} 
+              size={24} 
+              color={liked ? "#FF5C5C" : "#C4C4C4"} 
+            />
+          </TouchableOpacity>
+          <Text style={styles.likeCount}>{likesCount}</Text>
+        </View>
         {isOwner && (
-          <TouchableOpacity style={styles.botonLogin} onPress={this.handleDelete}>
-            <Text style={styles.botonTextoLogin}>Eliminar</Text>
+          <TouchableOpacity style={styles.deleteButton} onPress={this.handleDelete}>
+            <Text style={styles.deleteText}>Eliminar</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -87,85 +84,54 @@ class Post extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#FFFCFE",
-    paddingHorizontal: 40,
-    paddingVertical: 20,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: "#D4C6E7",
-    marginBottom: 20,
-  },
-  titulo: {
-    fontWeight: "bold",
-    fontSize: 20,
-    color: "#D4C6E7",
-    marginBottom: 10,
-    fontFamily: "Arial",
-    textAlign: "center",
-  },
-  field: {
-    borderWidth: 1,
-    borderColor: "#D4C6E7",
+    backgroundColor: "#F4F1FC",
+    padding: 16,
     borderRadius: 12,
-    height: 80,
-    width: "100%",
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    fontSize: 20,
-    marginBottom: 15,
-    backgroundColor: "#FFFFFF",
-    color: "#808080",
-    fontFamily: "Arial",
-    textAlign: "center",
-    textAlignVertical: "center",
+    marginBottom: 16,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 4,
   },
-  fecha: {
+  owner: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#4A4A4A",
+    marginBottom: 8,
+  },
+  description: {
+    fontSize: 16,
+    color: "#333",
+    marginBottom: 12,
+    lineHeight: 22,
+  },
+  date: {
     fontSize: 12,
-    color: "#D4C6E7",
-    marginTop: 15,
-    marginBottom: 15,
-    fontFamily: "Arial",
+    color: "#A9A9A9",
+    marginBottom: 12,
   },
-  likes: {
-    fontSize: 16,
-    color: "#D4C6E7",
-    marginBottom: 10,
-    fontFamily: "Arial",
-  },
-  boton: {
-    backgroundColor: "#C9E4DE",
-    paddingHorizontal: 10,
-    paddingVertical: 12,
-    borderRadius: 20,
-    marginTop: 15,
-    width: "100%",
+  likeContainer: {
+    flexDirection: "row",
     alignItems: "center",
   },
-  botonTexto: {
-    color: "#FFFFFF",
-    fontWeight: "bold",
-    fontSize: 16,
-    fontFamily: "Arial",
+  likeCount: {
+    marginLeft: 8,
+    fontSize: 14,
+    color: "#4A4A4A",
   },
-  botonLogin: {
-    backgroundColor: "transparent",
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: "#BFDCE5",
-    marginTop: 10,
-    width: "100%",
+  deleteButton: {
+    marginTop: 12,
+    backgroundColor: "#FFEDED",
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 8,
     alignItems: "center",
   },
-  botonTextoLogin: {
-    color: "#BFDCE5",
-    fontWeight: "bold",
-    fontSize: 16,
-    fontFamily: "Arial",
+  deleteText: {
+    fontSize: 14,
+    color: "#FF5C5C",
+    fontWeight: "600",
   },
 });
 
