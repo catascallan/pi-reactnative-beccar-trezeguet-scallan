@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         borderRadius: 8,
         alignItems: "center",
-        marginTop: 16,
+        marginTop: 12,
     },
     botonTexto: {
         color: "#FF5C5C",
@@ -140,10 +140,9 @@ const styles = StyleSheet.create({
         fontSize: 16, 
     },
     postText: {
-        fontSize: 18, 
+        fontSize: 16, 
         color: "#696969", 
         textAlign: "center", 
-        marginBottom: 12, 
         lineHeight: 24,
     },
     botonLogout: {

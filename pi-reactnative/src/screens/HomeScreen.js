@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import { auth, db } from "../firebase/config";
 import Post from "../components/Post";
 
@@ -30,12 +30,6 @@ class HomeScreen extends Component {
         }
     }    
 
-    logout() {
-        auth.signOut()
-            .then(() => this.props.navigation.navigate("Login"))
-            .catch((error) => console.error(error));
-    }
-
     render() {
         if (!auth.currentUser) {
             this.props.navigation.navigate("Login");
@@ -59,12 +53,6 @@ class HomeScreen extends Component {
                         )}
                     />
                 )}
-                <TouchableOpacity
-                    onPress={() => this.logout()} //cuando se apreta el botón de logout se ejecuta la función logout de arriba
-                    style={styles.logoutButton}
-                >
-                    <Text style={styles.logoutText}>Logout</Text>
-                </TouchableOpacity>
             </View>
         );
     }
@@ -91,26 +79,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         fontFamily: "Arial",
         textAlign: "center",
-    },
-    logoutButton: {
-        backgroundColor: "#C9E4DE",
-        paddingHorizontal: 10,
-        paddingVertical: 12,
-        borderRadius: 20,
-        marginTop: 15,
-        marginBottom: 30,
-        width: "100%",
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: { width: 2, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 3,
-    },
-    logoutText: {
-        color: "#FFFFFF",
-        fontWeight: "bold",
-        fontSize: 16,
-        fontFamily: "Arial",
     },
 });
 
