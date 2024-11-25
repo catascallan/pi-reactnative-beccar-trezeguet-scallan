@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, FlatList, Text, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, TextInput, FlatList, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { db } from "../firebase/config";
 
 class SearchUserScreen extends Component {
