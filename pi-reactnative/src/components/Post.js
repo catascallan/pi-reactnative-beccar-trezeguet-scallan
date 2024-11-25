@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { AntDesign } from "@expo/vector-icons"; // Importar ícono de corazón
+import { AntDesign } from "@expo/vector-icons";
 import { db, auth } from "../firebase/config";  
 import firebase from "firebase";
 
